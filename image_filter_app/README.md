@@ -27,7 +27,7 @@ Desenvolvida com **Python + Flask**, interface em **HTML e CSS básico**.
 1. **Clone o repositório:**
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/yFidelis/ComputacaoGrafica.git
 cd nome-do-repositorio
 
 
