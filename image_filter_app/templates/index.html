@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Filtros de Imagem</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Filtros de Imagem</h1>
+        
+        <!-- Formulário de upload -->
+        <form method="POST" enctype="multipart/form-data">
+            <label>Escolha uma imagem:</label>
+            <input type="file" name="image" required>
+
+            <label>Escolha um filtro:</label>
+            <select name="filtro">
+                <option value="negativo">Negativo</option>
+                <option value="mediana">Filtro da Mediana</option>
+                <option value="gaussiano">Filtro Gaussiano</option>
+                <option value="personalizado">Filtro Personalizado</option>
+                <option value="sobel">Filtro de Sobel</option>
+                <option value="threshold">Threshold</option>
+            </select>
+
+            <button type="submit">Aplicar Filtro</button>
+        </form>
+
+        {% if original and processed %}
+        <div class="results">
+            <!-- Imagem original e histograma -->
+            <div class="image-block">
+                <h2>Original</h2>
+                <img src="{{ url_for('static', filename='uploads/' + original) }}">
+                <h3>Histograma</h3>
+                <img src="{{ url_for('static', filename='histograms/' + hist_original) }}">
+            </div>
+
+            <!-- Imagem processada e histograma -->
+            <div class="image-block">
+                <h2>Processada</h2>
+                <img src="{{ url_for('static', filename='processed/' + processed) }}">
+                <h3>Histograma</h3>
+                <img src="{{ url_for('static', filename='histograms/' + hist_processado) }}">
+
+                <a class="download-btn" href="{{ url_for('download_file', filename=processed) }}">⬇️ Baixar Imagem Processada</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
